@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  rust:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: clippy, rustfmt
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: |
+            spikes/input-windows
+      - name: Check spike (if present)
+        shell: pwsh
+        run: |
+          $crate = "spikes/input-windows"
+          if (Test-Path "$crate/Cargo.toml") {
+            Push-Location $crate
+            cargo fmt --all -- --check
+            cargo clippy --all-targets -- -D warnings
+            cargo test
+            Pop-Location
+          } else {
+            Write-Host "Spike crate not created yet, skipping."
+          }

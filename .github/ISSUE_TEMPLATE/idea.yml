@@ -1,0 +1,14 @@
+name: Idea / Feature request
+description: Propón una acción, integración o mejora / Suggest an action, integration or improvement
+labels: ["idea"]
+body:
+  - type: textarea
+    id: problema
+    attributes:
+      label: Qué quieres lograr / What do you want to achieve
+    validations:
+      required: true
+  - type: textarea
+    id: propuesta
+    attributes:
+      label: Cómo te imaginas que funcione / How should it work

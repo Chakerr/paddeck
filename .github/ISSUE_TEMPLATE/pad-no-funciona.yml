@@ -1,0 +1,34 @@
+name: Mi pad no funciona / My numpad doesn't work
+description: Reporta un pad numérico incompatible / Report an incompatible numpad
+labels: ["compatibilidad"]
+body:
+  - type: input
+    id: modelo
+    attributes:
+      label: Marca y modelo del pad / Numpad brand and model
+    validations:
+      required: true
+  - type: input
+    id: vidpid
+    attributes:
+      label: VID/PID
+      description: Administrador de dispositivos → el pad → Propiedades → Detalles → Id. de hardware
+      placeholder: VID_1A2C&PID_0E24
+  - type: input
+    id: windows
+    attributes:
+      label: Versión de Windows / Windows version
+    validations:
+      required: true
+  - type: dropdown
+    id: conexion
+    attributes:
+      label: Conexión / Connection
+      options: [USB con cable, Receptor inalámbrico 2.4 GHz, Bluetooth]
+  - type: textarea
+    id: que-pasa
+    attributes:
+      label: Qué pasa / What happens
+      description: ¿No se detecta, se escapan teclas a otras apps, algunas teclas no responden?
+    validations:
+      required: true
